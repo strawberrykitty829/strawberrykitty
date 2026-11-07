@@ -180,3 +180,4 @@ h1{font-size:56px} h2{font-size:36px}
 @media (prefers-reduced-motion:no-preference){
   .btn,.pill,.plug-btn{transition:background .15s,border-color .15s,filter .15s}
 }
+[hidden]{display:none !important}
