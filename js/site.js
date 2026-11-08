@@ -39,10 +39,9 @@
     '<button class="mode" id="modeBtn" type="button">' + modeLabel(getTheme()) + '</button>' +
     '</nav></div></header>';
   var footer = '<footer class="site-footer"><div class="wrap">' +
-    '<span>Found a bug or have an idea? Discord: ' + discordLink() + '</span>' +
-    '<div class="foot-links">' +
-    (S.kofi ? '<a class="btn ghost small" href="' + esc(S.kofi) + '" rel="noopener">Buy me a coffee</a>' : '') +
+    '<div class="foot-left"><span>Found a bug or have an idea? Discord: ' + discordLink() + '</span>' +
     '<a class="btn ghost small" href="feedback.html">Open the feedback form</a></div>' +
+    (S.kofi ? '<div class="foot-links"><a class="btn ghost small" href="' + esc(S.kofi) + '" rel="noopener">Buy me a coffee</a></div>' : '') +
     '</div></footer>';
   document.body.insertAdjacentHTML('afterbegin', header);
   document.body.insertAdjacentHTML('beforeend', footer);
