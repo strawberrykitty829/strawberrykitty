@@ -1,12 +1,7 @@
-/* ------------------------------------------------------------------
-   All the content of the site lives in this one file.
-   To update a plugin: change its version/text here and replace its
-   cover in img/plugins/. To add a theme: add it below and put its
-   cover in img/themes/.
-------------------------------------------------------------------- */
 window.SITE = {
   name: 'strawberrykitty',
   discord: 'sbkitty',
+  discordUrl: 'https://discord.com/users/775455019482087476',
 
   // Web3Forms access key for the feedback form
   formKey: 'c07ddaed-f2bf-4d59-b793-2c0a8fefa63f',
