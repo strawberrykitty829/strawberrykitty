@@ -92,13 +92,40 @@
     function render() {
       var list = cards.filter(function (c) { return filter === 'all' || c.tags.indexOf(filter) >= 0; });
       container.innerHTML = list.map(function (c) { return themeCardHTML(c, cards.indexOf(c)); }).join('');
+      setTimeout(function () { list.forEach(preload); }, 400);
+    }
+    var preloaded = {};
+    function preload(c) {
+      if (!c.fam || preloaded[c.fam.key]) return;
+      preloaded[c.fam.key] = true;
+      c.fam.variants.forEach(function (v) { var im = new Image(); im.src = 'img/themes/' + v.img; });
     }
     container.addEventListener('click', function (e) {
       var b = e.target.closest('[data-dot]'); if (!b) return;
       var card = b.closest('[data-card]'); var c = cards[+card.getAttribute('data-card')];
-      c.idx = +b.getAttribute('data-dot');
-      var tmp = document.createElement('div'); tmp.innerHTML = themeCardHTML(c, +card.getAttribute('data-card'));
-      card.replaceWith(tmp.firstChild);
+      var idx = +b.getAttribute('data-dot');
+      if (idx === c.idx) return;
+      c.idx = idx;
+      var v = c.fam.variants[idx];
+      $all('.dot', card).forEach(function (d, j) {
+        d.classList.toggle('on', j === idx);
+        d.setAttribute('aria-pressed', j === idx ? 'true' : 'false');
+      });
+      $('.variant', card).textContent = v.n;
+      $('a.btn', card).href = S.hubTheme + v.hub;
+      var img = $('img', card);
+      img.style.opacity = '0.4';
+      var next = new Image();
+      next.onload = function () {
+        if (c.idx !== idx) return;
+        img.src = next.src; img.alt = v.n + ' theme screenshot';
+        img.style.opacity = '1';
+      };
+      next.onerror = function () { img.style.opacity = '1'; };
+      next.src = 'img/themes/' + v.img;
+    });
+    container.addEventListener('pointerover', function (e) {
+      var card = e.target.closest('[data-card]'); if (card) preload(cards[+card.getAttribute('data-card')]);
     });
     return { set: function (f) { filter = f; render(); }, render: render };
   }
