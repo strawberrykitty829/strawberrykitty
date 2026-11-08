@@ -18,6 +18,7 @@
     var b = $('.mode'); if (b) b.textContent = modeLabel(t);
   }
   function modeLabel(t) { return t === 'dark' ? 'Dark · switch to light' : 'Light · switch to dark'; }
+  function discordLink() { return '<a class="inline-link" href="' + esc(S.discordUrl) + '" target="_blank" rel="noopener noreferrer">' + esc(S.discord) + '</a>'; }
   function hubPlugin(p) { return S.hubPlugin + p.id; }
 
   /* ---------- header / footer ---------- */
@@ -38,7 +39,7 @@
     '<button class="mode" id="modeBtn" type="button">' + modeLabel(getTheme()) + '</button>' +
     '</nav></div></header>';
   var footer = '<footer class="site-footer"><div class="wrap">' +
-    '<span>Found a bug or have an idea? Discord: ' + esc(S.discord) + '</span>' +
+    '<span>Found a bug or have an idea? Discord: ' + discordLink() + '</span>' +
     '<div class="foot-links">' +
     (S.kofi ? '<a class="btn ghost small" href="' + esc(S.kofi) + '" rel="noopener">Buy me a coffee</a>' : '') +
     '<a class="btn ghost small" href="feedback.html">Open the feedback form</a></div>' +
@@ -216,7 +217,7 @@
     app.innerHTML = '<div class="wrap"><img class="about-img" src="img/about-banner.jpg" alt="A black cat sitting in a moonlit garden, looking up at a crescent moon">' +
       '<div class="about-text"><h1>About</h1>' +
       '<p>Hello, I\'m ' + esc(S.name) + '. These are my plugins and themes for Tavo, each with a link to Tavo Hub. I make things I find useful or fun, and I like to get creative with them.</p>' +
-      '<p>Feedback or bugs? Use the feedback form or find me on Discord: ' + esc(S.discord) + '.</p>' +
+      '<p>Feedback or bugs? Use the feedback form or find me on Discord: ' + discordLink() + '.</p>' +
       '<a class="btn" style="align-self:flex-start;margin-top:4px" href="feedback.html">Open the feedback form</a></div></div>';
   }
 
@@ -229,7 +230,7 @@
       '<optgroup label="Other"><option>A regex pack</option><option>This website</option><option>Something else</option></optgroup>';
     app.innerHTML = '<div class="wrap"><div class="fb-layout"><div class="fb-side"><h1>Feedback and bugs</h1>' +
       '<p class="lead">Found a bug, or have an idea? Write to me here. It lands straight in my inbox.</p>' +
-      '<div class="card fb-note">Prefer Discord? I\'m ' + esc(S.discord) + '.<br>Helpful to include: your Tavo version, the plugin version, and what you were doing when it happened.</div></div>' +
+      '<div class="card fb-note">Prefer Discord? I\'m ' + discordLink() + '.<br>Helpful to include: your Tavo version, the plugin version, and what you were doing when it happened.</div></div>' +
       '<form class="card fb-form" id="fb" novalidate>' +
       '<div class="row" role="group" aria-label="Type of message" style="gap:8px">' + kinds.map(function (k, i) { return '<button type="button" class="pill' + (i === 0 ? ' on' : '') + '" data-k="' + k + '" aria-pressed="' + (i === 0) + '">' + k + '</button>'; }).join('') + '</div>' +
       '<div><label for="which">Which plugin or theme?</label><select id="which" name="which">' + opts + '</select></div>' +
